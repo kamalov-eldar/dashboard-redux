@@ -8,8 +8,8 @@ export const ToDoItem = (props) => {
 
   // выполненая задача
   const toggleComplete = (task) => {
-    props.putCompletedThunkCreator(task);
-    /*  props.toggleCompletionProgress(true, task.id); // disabled эл-нт пока не пришел ответ от сервера
+    // props.putCompletedThunkCreator(task);
+    props.toggleCompletionProgress(true, task.id); // disabled эл-нт пока не пришел ответ от сервера
     props.toggleIsFetching(true);
     todoAPI.putCompletedAPI(task).then((response) => {
       if (response.data.status === "success") {
@@ -17,7 +17,7 @@ export const ToDoItem = (props) => {
       }
       props.toggleCompletionProgress(false, task.id);
       props.toggleIsFetching(false);
-    }); */
+    });
   };
   // удаление задачи
   const removeTask = (id) => {

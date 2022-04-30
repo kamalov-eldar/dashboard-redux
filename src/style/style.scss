@@ -27,6 +27,27 @@ textarea {
   font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; //'Quicksand', sans-serif;
 }
 
+.beta__status {
+  color: red;
+  display: flex;
+  .gear {
+    margin-left: 5px;
+    fill:#a70cdf;
+    path {
+      animation: animate 3.5s linear infinite;//
+    }
+    @keyframes animate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+
 .wrapper {
   height: 100vh;
   animation: fadein 0.5s linear;
