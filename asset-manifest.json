@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dashboard-redux/static/css/main.9b4083a7.css",
+    "main.js": "/dashboard-redux/static/js/main.81e71499.js",
+    "index.html": "/dashboard-redux/index.html",
+    "main.9b4083a7.css.map": "/dashboard-redux/static/css/main.9b4083a7.css.map",
+    "main.81e71499.js.map": "/dashboard-redux/static/js/main.81e71499.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9b4083a7.css",
+    "static/js/main.81e71499.js"
+  ]
+}
