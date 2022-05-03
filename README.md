@@ -25,6 +25,6 @@
 
 ### Deployment
 
-### `npm run deploy` - выложить на github.pages
+### `npm run deploy` - сборка приложения и выложить на github.pages
 
 готовый сайт -> https://kamalov-eldar.github.io/dashboard-redux
