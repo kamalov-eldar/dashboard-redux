@@ -4,12 +4,15 @@ import axios from "axios";
 import ToDoFormContainer from "./ToDoFormContainer";
 
 export const ToDo = (props) => {
-
+  const [countToDo, setCountToDo] = useState("");
+  const todoCount = (value) => {
+    setCountToDo(value);
+  };
   return (
     <div className="ToDo container">
       <h1>ToDo</h1>
-      <h2>Список задач {"todos.length"}</h2>
-      <ToDoFormContainer />
+      <h2>Список задач {countToDo}</h2>
+      <ToDoFormContainer todoCount={todoCount} />
     </div>
   );
 };

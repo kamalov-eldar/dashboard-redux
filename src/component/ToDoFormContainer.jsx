@@ -14,16 +14,17 @@ import {
   onAddNewTaskThunkCreator,
 } from "../redux/todo-reducer";
 import { ToDoForm } from "./ToDoForm";
-import { todoAPI } from "../api/api";
-import axios from "axios";
 
 class ToDoFormContainer extends React.Component {
   componentDidMount() {
-    //console.log("componentDidMount: ");
     this.props.getTasksThunkCreator();
     /*  todoAPI.getTasksAPI().then((tasks) => {
       this.props.setTasks(tasks);
     }); */
+  }
+
+  componentDidUpdate() {
+    this.props.todoCount(this.props.tasks.length);
   }
 
   render() {

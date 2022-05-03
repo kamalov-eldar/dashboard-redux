@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { ToDoItem } from "./ToDoItem";
 import { Preloader } from "./common/Preloader";
@@ -6,24 +5,10 @@ import { todoAPI } from "../api/api";
 export const ToDoForm = (props) => {
   //console.log("props-ToDoForm: ", props);
 
+
   // вызов колбэков которые приходят в пропсах
   const onAddNewTask = () => {
     props.onAddNewTaskThunkCreator(props.newTaskText);
-
-    /*  props.toggleIsFetching(true);
-    //props.toggleCompletionProgress(true, task.id); // disabled эл-нт пока не пришел ответ от сервера
-    todoAPI
-      .addTaskAPI(props.newTaskText)
-      .then((response) => {
-        if (response.data.status === "success") {
-        }
-      })
-      .then((response) => {
-        todoAPI.getTasksAPI().then((tasks) => {
-          props.setTasks(tasks);
-        });
-        props.toggleIsFetching(false);
-      }); */
   };
 
   // вызов колбэков которые приходят в пропсах
@@ -32,9 +17,9 @@ export const ToDoForm = (props) => {
     props.updateNewTaskText(text);
   };
 
-  const handleSubmit = (e) => {
+  /* const handleSubmit = (e) => {
     e.preventDefault();
-  };
+  }; */
 
   return (
     /*  <form className="mb-3 input-group" onSubmit={handleSubmit}> */
@@ -43,29 +28,21 @@ export const ToDoForm = (props) => {
       <div>
         <div>
           <input className="form-control" value={props.newTaskText} onChange={onTaskChange} />
-          <Button
-            onClick={() => {
-              onAddNewTask();
-            }}
-            type="submit"
-            variant="danger"
-            id="button-addon1"
-          >
+          <Button onClick={onAddNewTask} type="submit" variant="danger" id="button-addon1">
             Добавить
           </Button>
         </div>
         {props.tasks.map((task) => {
-          // console.log("tasks.map", task);
           return (
             <ToDoItem
               task={task}
               key={task.id}
-              deleteTask={props.deleteTask}
-              toggleTaskInCompleted={props.toggleTaskInCompleted}
-              toggleCompletionProgress={props.toggleCompletionProgress}
+              /*   deleteTask={props.deleteTask} */
+              /*    toggleTaskInCompleted={props.toggleTaskInCompleted} */
+              /*       toggleCompletionProgress={props.toggleCompletionProgress} */
               completionInProgress={props.completionInProgress}
               isFetching={props.isFetching}
-              toggleIsFetching={props.toggleIsFetching}
+              /*  toggleIsFetching={props.toggleIsFetching} */
               putCompletedThunkCreator={props.putCompletedThunkCreator}
               removeTaskThunkCreator={props.removeTaskThunkCreator}
             />

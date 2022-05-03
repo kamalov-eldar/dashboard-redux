@@ -4,7 +4,7 @@ import { todoAPI } from "../api/api";
 import axios from "axios";
 
 export const ToDoItem = (props) => {
-  console.log("props-ToDoItem: ", props);
+  //console.log("props-ToDoItem: ", props);
 
   // выполненая задача
   const toggleComplete = (task) => {
