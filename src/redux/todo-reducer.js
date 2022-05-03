@@ -20,25 +20,9 @@ let initialState = {
   isFetching: false,
 };
 
-/* const getTasks = async () => {
-  const promise = axios.get(`https://repetitora.net/api/js/tasks?widgetid=987654`);
-  const response = await promise;
-  console.log("response-todoReducer: ", response);
-  return response.data;
-}; */
-
-/*
-if (state === undefined) {
-  const promise = axios.get("https://repetitora.net/api/js/tasks?widgetid=987654").then((response) => {
-    console.log("response-undefined: ", response.data);
-    return promise;
-    return response.data;
-    //props.setUsers(response.data.items);
-  });
-} */
 
 const todoReducer = (state = initialState, action) => {
-  console.log("state-todoReducer: ", state);
+  //console.log("state-todoReducer: ", state);
 
   //console.log("action-todoReducer", action);
   switch (action.type) {
@@ -64,10 +48,11 @@ const todoReducer = (state = initialState, action) => {
       };
     }
     case SET_TASKS: {
-      //console.log("GET_TASKS-state", state);
+      console.log("SET_TASKS", "SET_TASKS-state:", state, "SET_TASKS-action:", action);
       return {
         ...state, // поверхностная копия обьекта
-        tasks: [...action.tasks], // , ...action.tasks склеиваем два массива старых пользователей (...state.tasks) и новых что пришли из актион (...action.tasks)
+        tasks: [...action.tasks],
+        // , ...action.tasks склеиваем два массива старых пользователей (...state.tasks) и новых что пришли из актион (...action.tasks)
       };
     }
     case TOGGLE_IS_COMPLETION_PROGRESS: {
@@ -114,10 +99,11 @@ export const toggleCompletionProgressAC = (isFetching, taskId) => ({
 });
 export const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
+/*************/
 export const putCompletedThunkCreator = (task) => {
   console.log("putCompletedThunkCreator:");
-
   return (dispatch) => {
+    console.log("dispatch-putCompletedThunkCreator: ", dispatch);
     console.log("putCompletedThunkCreator:2");
     dispatch(toggleCompletionProgressAC(true, task.id)); // disabled эл-нт пока не пришел ответ от сервера
     dispatch(toggleIsFetchingAC(true));
@@ -130,13 +116,6 @@ export const putCompletedThunkCreator = (task) => {
     });
   };
 };
-
-/* todoAPI.getTasksAPI().then((tasks) => {
-    //dispatch(setTasks(tasks));
-   // dispatch(toggleIsFetching(false));
-  //dispatch(toggleIsFetching(true));
-  });
-}*/
 
 /* export const putCompletedThunk = (task) => (dispatch) => {
   console.log("putCompleted-dispatch", dispatch);

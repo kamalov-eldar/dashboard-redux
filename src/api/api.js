@@ -20,33 +20,3 @@ export const todoAPI = {
   },
 };
 
-/* export const getTasks = async () => {
-  const response = await axios.get("https://repetitora.net/api/js/tasks?widgetid=987654");
-  console.log("response: ", response.data);
-  return response.data;
-}; */
-
-/* export const getTasks = async () => {
-  const response = await axios.get(`https://repetitora.net/api/js/tasks?widgetid=987654`);
-  console.log("response: ", response);
-
-  return response.data;
-}; */
-
-/* export const getTasks = () => {
-  const promise = axios.get(`https://repetitora.net/api/js/tasks?widgetid=987654`);
-  return promise.then((response) => {
-    return response.data;
-  });
-};
- */
-/* let promise = getTasks();
-let initialState = promise.then();
-console.log("initialState: ", initialState); */
-
-/* if (props.users.length === 0) {
-  axios.get("https://repetitora.net/api/js/tasks?widgetid=987654")
-      .then(response => {
-          props.setUsers(response.data.items);
-      });
-} */

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { ToDoItem } from "./ToDoItem";
-import axios from "axios";
+import { Preloader } from "./common/Preloader";
 import { todoAPI } from "../api/api";
-
 export const ToDoForm = (props) => {
   console.log("props-ToDoForm: ", props);
   //console.log("props-tasks-ToDoForm: ", props.tasks);
@@ -17,16 +16,12 @@ export const ToDoForm = (props) => {
       .then((response) => {
         if (response.data.status === "success") {
         }
-        //props.addNewTask(props.newTaskText);
-        //props.toggleCompletionProgress(false, task.id);
-        props.toggleIsFetching(false);
-        //props.updateNewTaskText("");
       })
       .then((response) => {
         todoAPI.getTasksAPI().then((tasks) => {
           props.setTasks(tasks);
-          //this.props.toggleIsFetching(false);
         });
+        props.toggleIsFetching(false);
       });
   };
 
@@ -42,30 +37,41 @@ export const ToDoForm = (props) => {
 
   return (
     /*  <form className="mb-3 input-group" onSubmit={handleSubmit}> */
-    <div>
+    <>
+      {props.isFetching ? <Preloader /> : null}
       <div>
-        <input className="form-control" value={props.newTaskText} onChange={onTaskChange} />
-        <Button onClick={onAddNewTask} type="submit" variant="danger" id="button-addon1">
-          Добавить
-        </Button>
+        <div>
+          <input className="form-control" value={props.newTaskText} onChange={onTaskChange} />
+          <Button
+            onClick={() => {
+              onAddNewTask();
+            }}
+            type="submit"
+            variant="danger"
+            id="button-addon1"
+          >
+            Добавить
+          </Button>
+        </div>
+        {props.tasks.map((task) => {
+          // console.log("tasks.map", task);
+          return (
+            <ToDoItem
+              task={task}
+              key={task.id}
+              deleteTask={props.deleteTask}
+              toggleTaskInCompleted={props.toggleTaskInCompleted}
+              toggleCompletionProgress={props.toggleCompletionProgress}
+              completionInProgress={props.completionInProgress}
+              isFetching={props.isFetching}
+              toggleIsFetching={props.toggleIsFetching}
+              putCompletedThunkCreator={props.putCompletedThunkCreator}
+            />
+          );
+        })}
       </div>
-      {props.tasks.map((task) => {
-        console.log("tasks.map", task);
-        return (
-          <ToDoItem
-            task={task}
-            key={task.id}
-            deleteTask={props.deleteTask}
-            toggleTaskInCompleted={props.toggleTaskInCompleted}
-            toggleCompletionProgress={props.toggleCompletionProgress}
-            completionInProgress={props.completionInProgress}
-            isFetching={props.isFetching}
-            toggleIsFetching={props.toggleIsFetching}
-            putCompletedThunkCreator={props.putCompletedThunkCreator}
-          />
-        );
-      })}
-    </div>
+    </>
+
     /*   </form> */
   );
 };

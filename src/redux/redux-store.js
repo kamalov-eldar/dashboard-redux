@@ -6,12 +6,12 @@ import thunk from "redux-thunk";
 
 //создаем обьект и собираем все редюсеры как св-ва обьекта
 let reducers = combineReducers({
-  todo: todoReducer,
+  todo: todoReducer, // 
 });
 
 let store = createStore(
   reducers,
-  compose(applyMiddleware(thunk) /* window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() */)
+  compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 );
 //applyMiddleware(thunkMiddleware)
 //console.log("store", store);

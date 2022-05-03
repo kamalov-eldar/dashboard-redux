@@ -17,25 +17,23 @@ import axios from "axios";
 
 class ToDoFormContainer extends React.Component {
   componentDidMount() {
-    console.log("componentDidMount: ");
-    //this.props.getTasks();
-    //this.props.toggleIsFetching(true);
+    //console.log("componentDidMount: ");
     todoAPI.getTasksAPI().then((tasks) => {
       this.props.setTasks(tasks);
-      //this.props.toggleIsFetching(false);
     });
   }
 
   render() {
     //console.log("props-ToDoFormContainer", this.props);
+    console.log("render-ToDoFormContainer");
     return (
       <ToDoForm
-        {...this.props}
-        // completionInProgress={this.props.completionInProgress}
-        //  addNewTask={props.addNewTask}
-        //updateNewTaskText={props.updateNewTaskText}
-        // tasks={this.props.tasks}
-        //newTaskText={props.newTaskTex}
+      {...this.props}
+      // completionInProgress={this.props.completionInProgress}
+      //  addNewTask={props.addNewTask}
+      //updateNewTaskText={props.updateNewTaskText}
+      // tasks={this.props.tasks}
+      //newTaskText={props.newTaskTex}
       />
     );
   }
@@ -43,9 +41,9 @@ class ToDoFormContainer extends React.Component {
 
 //  передаем state в компонент ToDoFormContainer
 let mapStateToProps = (state) => {
-  console.log("state-mapStateToProps: ", state);
+  //console.log("state-ToDoFormContainer: ", state);
   return {
-    tasks: state.todo.tasks,
+    tasks: state.todo.tasks, // если изм этот обьект тогда перерисуйся
     newTaskText: state.todo.newTaskText,
     completionInProgress: state.todo.completionInProgress,
     isFetching: state.todo.isFetching,
@@ -53,7 +51,9 @@ let mapStateToProps = (state) => {
 };
 
 // передаем колбэки в компонент ToDoFormContainer
+// dispatch = store.dispatch.bind(store)
 let mapDispatchToProps = (dispatch) => {
+  //console.log("dispatch-mapDispatchToProps: ", dispatch);
   return {
     /*   updateNewTaskText: updateNewTaskTextAC,
     addNewTask: addNewTaskAC,
@@ -62,7 +62,7 @@ let mapDispatchToProps = (dispatch) => {
       dispatch(updateNewTaskTextAC(newText));
     },
     addNewTask: (taskText) => {
-      console.log("addNewTask");
+      //console.log("addNewTask");
       dispatch(addNewTaskAC(taskText));
     },
     deleteTask: (taskId) => {

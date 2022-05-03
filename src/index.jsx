@@ -14,7 +14,7 @@ ReactDOM.render(
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* провайдер передает библ store   */}
+    {/*  сделать store доступным для всего дерева компонентов */}
     <App
     /*  state={state}
         dispatch={store.dispatch.bind(store)}
