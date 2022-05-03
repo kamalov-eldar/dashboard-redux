@@ -4,12 +4,13 @@ import { ToDoItem } from "./ToDoItem";
 import { Preloader } from "./common/Preloader";
 import { todoAPI } from "../api/api";
 export const ToDoForm = (props) => {
-  console.log("props-ToDoForm: ", props);
-  //console.log("props-tasks-ToDoForm: ", props.tasks);
+  //console.log("props-ToDoForm: ", props);
 
   // вызов колбэков которые приходят в пропсах
   const onAddNewTask = () => {
-    props.toggleIsFetching(true);
+    props.onAddNewTaskThunkCreator(props.newTaskText);
+
+    /*  props.toggleIsFetching(true);
     //props.toggleCompletionProgress(true, task.id); // disabled эл-нт пока не пришел ответ от сервера
     todoAPI
       .addTaskAPI(props.newTaskText)
@@ -22,7 +23,7 @@ export const ToDoForm = (props) => {
           props.setTasks(tasks);
         });
         props.toggleIsFetching(false);
-      });
+      }); */
   };
 
   // вызов колбэков которые приходят в пропсах
@@ -66,6 +67,7 @@ export const ToDoForm = (props) => {
               isFetching={props.isFetching}
               toggleIsFetching={props.toggleIsFetching}
               putCompletedThunkCreator={props.putCompletedThunkCreator}
+              removeTaskThunkCreator={props.removeTaskThunkCreator}
             />
           );
         })}

@@ -6,10 +6,9 @@ export const todoAPI = {
     return response.data;
   },
   // добавление задачи
-  addTaskAPI(taskText) {
-   // console.log("taskText-addTaskAPI: ", taskText);
-
-    return axios.post(`https://repetitora.net/api/js/tasks`, { widgetid: 987654, title: taskText });
+  addTaskAPI(newTaskText) {
+    // console.log("taskText-addTaskAPI: ", taskText);
+    return axios.post(`https://repetitora.net/api/js/tasks`, { widgetid: 987654, title: newTaskText });
   },
   putCompletedAPI(task) {
     return axios.put(`https://repetitora.net/api/js/tasks?widgetid=987654&taskId=${task.id}&done=${!task.done}`);
@@ -19,4 +18,3 @@ export const todoAPI = {
     return axios.delete(`https://repetitora.net/api/js/Tasks?widgetid=987654&taskId=${id}`);
   },
 };
-

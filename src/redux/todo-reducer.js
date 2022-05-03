@@ -20,11 +20,7 @@ let initialState = {
   isFetching: false,
 };
 
-
 const todoReducer = (state = initialState, action) => {
-  //console.log("state-todoReducer: ", state);
-
-  //console.log("action-todoReducer", action);
   switch (action.type) {
     case ADD_TASK: {
       console.log("action-ADD_TASK", action);
@@ -48,11 +44,9 @@ const todoReducer = (state = initialState, action) => {
       };
     }
     case SET_TASKS: {
-      console.log("SET_TASKS", "SET_TASKS-state:", state, "SET_TASKS-action:", action);
       return {
         ...state, // поверхностная копия обьекта
         tasks: [...action.tasks],
-        // , ...action.tasks склеиваем два массива старых пользователей (...state.tasks) и новых что пришли из актион (...action.tasks)
       };
     }
     case TOGGLE_IS_COMPLETION_PROGRESS: {
@@ -99,34 +93,58 @@ export const toggleCompletionProgressAC = (isFetching, taskId) => ({
 });
 export const toggleIsFetchingAC = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-/*************/
+/**********************************************************************************************************/
+
+export const getTasksThunkCreator = () => (dispatch) => {
+  todoAPI.getTasksAPI().then((tasks) => {
+    dispatch(setTasksAC(tasks));
+  });
+};
 export const putCompletedThunkCreator = (task) => {
-  console.log("putCompletedThunkCreator:");
   return (dispatch) => {
-    console.log("dispatch-putCompletedThunkCreator: ", dispatch);
-    console.log("putCompletedThunkCreator:2");
-    dispatch(toggleCompletionProgressAC(true, task.id)); // disabled эл-нт пока не пришел ответ от сервера
+    // dispatch(toggleCompletionProgressAC(true, task.id)); // disabled эл-нт пока не пришел ответ от сервера
     dispatch(toggleIsFetchingAC(true));
     todoAPI.putCompletedAPI(task).then((response) => {
       if (response.data.status === "success") {
         dispatch(toggleTaskInCompletedAC(task.id));
       }
-      dispatch(toggleCompletionProgressAC(false, task.id));
+      //dispatch(toggleCompletionProgressAC(false, task.id));
       dispatch(toggleIsFetchingAC(false));
     });
   };
 };
 
-/* export const putCompletedThunk = (task) => (dispatch) => {
-  console.log("putCompleted-dispatch", dispatch);
-  dispatch(toggleIsFetching(true));
-  todoAPI.putCompleted(task).then((response) => {
-    if (response.data.status === "success") {
-      dispatch(toggleTaskInCompleted(task.id));
-    }
-    dispatch(toggleCompletionProgress(false, task.id));
-    dispatch(toggleIsFetching(false));
-  });
-}; */
+export const removeTaskThunkCreator = (id) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetchingAC(true));
+    // props.toggleIsFetching(true);
+    todoAPI.removeTaskAPI(id).then((response) => {
+      if (response.data.status === "success") {
+        dispatch(deleteTaskAC(id));
+      }
+      dispatch(toggleIsFetchingAC(false));
+    });
+  };
+};
+
+export const onAddNewTaskThunkCreator = (newTaskText) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetchingAC(true));
+    //props.toggleCompletionProgress(true, task.id); // disabled эл-нт пока не пришел ответ от сервера
+    todoAPI
+      .addTaskAPI(newTaskText)
+      .then((response) => {
+        if (response.data.status === "success") {
+        }
+      })
+      .then((response) => {
+        todoAPI.getTasksAPI().then((tasks) => {
+          // props.setTasks(tasks);
+          dispatch(setTasksAC(tasks));
+        });
+        dispatch(toggleIsFetchingAC(false));
+      });
+  };
+};
 
 export default todoReducer;

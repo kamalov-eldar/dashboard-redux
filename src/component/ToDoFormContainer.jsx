@@ -9,7 +9,9 @@ import {
   toggleIsFetchingAC,
   deleteTaskAC,
   getTasksThunkCreator,
+  removeTaskThunkCreator,
   putCompletedThunkCreator,
+  onAddNewTaskThunkCreator,
 } from "../redux/todo-reducer";
 import { ToDoForm } from "./ToDoForm";
 import { todoAPI } from "../api/api";
@@ -18,9 +20,10 @@ import axios from "axios";
 class ToDoFormContainer extends React.Component {
   componentDidMount() {
     //console.log("componentDidMount: ");
-    todoAPI.getTasksAPI().then((tasks) => {
+    this.props.getTasksThunkCreator();
+    /*  todoAPI.getTasksAPI().then((tasks) => {
       this.props.setTasks(tasks);
-    });
+    }); */
   }
 
   render() {
@@ -28,12 +31,12 @@ class ToDoFormContainer extends React.Component {
     console.log("render-ToDoFormContainer");
     return (
       <ToDoForm
-      {...this.props}
-      // completionInProgress={this.props.completionInProgress}
-      //  addNewTask={props.addNewTask}
-      //updateNewTaskText={props.updateNewTaskText}
-      // tasks={this.props.tasks}
-      //newTaskText={props.newTaskTex}
+        {...this.props}
+        // completionInProgress={this.props.completionInProgress}
+        //  addNewTask={props.addNewTask}
+        //updateNewTaskText={props.updateNewTaskText}
+        // tasks={this.props.tasks}
+        //newTaskText={props.newTaskTex}
       />
     );
   }
@@ -55,14 +58,11 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
   //console.log("dispatch-mapDispatchToProps: ", dispatch);
   return {
-    /*   updateNewTaskText: updateNewTaskTextAC,
-    addNewTask: addNewTaskAC,
-    setTasks: setTasksAC, */
+    /* setTasks: setTasksAC, */
     updateNewTaskText: (newText) => {
       dispatch(updateNewTaskTextAC(newText));
     },
     addNewTask: (taskText) => {
-      //console.log("addNewTask");
       dispatch(addNewTaskAC(taskText));
     },
     deleteTask: (taskId) => {
@@ -78,12 +78,18 @@ let mapDispatchToProps = (dispatch) => {
     toggleIsFetching: (isFetching) => {
       dispatch(toggleIsFetchingAC(isFetching));
     },
-    putCompletedThunkCreator: putCompletedThunkCreator,
-    /*  getTasksThunk: () => {
-      console.log("dispatch-mapDispatchToProps", dispatch);
+    putCompletedThunkCreator: (task) => {
+      dispatch(putCompletedThunkCreator(task));
+    },
+    removeTaskThunkCreator: (id) => {
+      dispatch(removeTaskThunkCreator(id));
+    },
+    getTasksThunkCreator: () => {
       dispatch(getTasksThunkCreator());
-    }, */
-    //getTasks: getTasks,
+    },
+    onAddNewTaskThunkCreator: (newTaskText) => {
+      dispatch(onAddNewTaskThunkCreator(newTaskText));
+    },
   };
 };
 
