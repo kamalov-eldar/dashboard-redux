@@ -1,14 +1,18 @@
 import { Button } from "react-bootstrap";
 import { ToDoItem } from "./ToDoItem";
 import { Preloader } from "./common/Preloader";
-import { todoAPI } from "../api/api";
 export const ToDoForm = (props) => {
-  //console.log("props-ToDoForm: ", props);
-
+  console.log("props-ToDoForm: ", props);
 
   // вызов колбэков которые приходят в пропсах
   const onAddNewTask = () => {
     props.onAddNewTaskThunkCreator(props.newTaskText);
+  };
+
+  const onKeyDown = (event) => {
+    if (event.key === "Enter" && !props.isFetching) {
+      props.onAddNewTaskThunkCreator(props.newTaskText);
+    }
   };
 
   // вызов колбэков которые приходят в пропсах
@@ -25,13 +29,14 @@ export const ToDoForm = (props) => {
     /*  <form className="mb-3 input-group" onSubmit={handleSubmit}> */
     <>
       {props.isFetching ? <Preloader /> : null}
-      <div>
-        <div>
-          <input className="form-control" value={props.newTaskText} onChange={onTaskChange} />
-          <Button onClick={onAddNewTask} type="submit" variant="danger" id="button-addon1">
+      <div className="todo__form">
+        <div className="todo__input">
+          <input className="form-control" value={props.newTaskText} onChange={onTaskChange} onKeyDown={onKeyDown} />
+          <Button onClick={onAddNewTask} type="submit" variant="danger" disabled={props.isFetching}>
             Добавить
           </Button>
         </div>
+
         {props.tasks.map((task) => {
           return (
             <ToDoItem
@@ -45,6 +50,7 @@ export const ToDoForm = (props) => {
               /*  toggleIsFetching={props.toggleIsFetching} */
               putCompletedThunkCreator={props.putCompletedThunkCreator}
               removeTaskThunkCreator={props.removeTaskThunkCreator}
+              inputDisabled={props.inputDisabled}
             />
           );
         })}

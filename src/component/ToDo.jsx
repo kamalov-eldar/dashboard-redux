@@ -9,7 +9,7 @@ export const ToDo = (props) => {
     setCountToDo(value);
   };
   return (
-    <div className="ToDo container">
+    <div className="todo container">
       <h1>ToDo</h1>
       <h2>Список задач {countToDo}</h2>
       <ToDoFormContainer todoCount={todoCount} />

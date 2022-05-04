@@ -5,13 +5,13 @@ import {
   updateNewTaskTextAC,
   setTasksAC,
   toggleTaskInCompletedAC,
-  toggleCompletionProgressAC,
   toggleIsFetchingAC,
   deleteTaskAC,
   getTasksThunkCreator,
   removeTaskThunkCreator,
   putCompletedThunkCreator,
   onAddNewTaskThunkCreator,
+  toggleProgressDisabledInputAC,
 } from "../redux/todo-reducer";
 import { ToDoForm } from "./ToDoForm";
 
@@ -49,8 +49,8 @@ let mapStateToProps = (state) => {
   return {
     tasks: state.todo.tasks, // если изм этот обьект тогда перерисуйся
     newTaskText: state.todo.newTaskText,
-    completionInProgress: state.todo.completionInProgress,
     isFetching: state.todo.isFetching,
+    inputDisabled: state.todo.inputDisabled,
   };
 };
 
@@ -75,7 +75,6 @@ let mapDispatchToProps = (dispatch) => {
     toggleTaskInCompleted: (taskId) => {
       dispatch(toggleTaskInCompletedAC(taskId));
     },
-    toggleCompletionProgress: toggleCompletionProgressAC,
     toggleIsFetching: (isFetching) => {
       dispatch(toggleIsFetchingAC(isFetching));
     },
@@ -90,6 +89,9 @@ let mapDispatchToProps = (dispatch) => {
     },
     onAddNewTaskThunkCreator: (newTaskText) => {
       dispatch(onAddNewTaskThunkCreator(newTaskText));
+    },
+    toggleProgressDisabledInput: () => {
+      toggleProgressDisabledInputAC();
     },
   };
 };

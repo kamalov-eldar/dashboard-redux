@@ -29,7 +29,10 @@ textarea {
 
 .beta__status {
   color: red;
-  display: flex;
+  display: inline-flex;
+  position: absolute;
+  top: 0;
+  left: 0;
   .gear {
     margin-left: 5px;
     fill:#a70cdf;
@@ -81,6 +84,7 @@ textarea {
   justify-content: space-between;
   padding-bottom: 45px;
   height: 100%;
+  position: relative;
   // min-width после 768px
   @media (min-width: 1200px) {
     font-size: 20px;
@@ -219,7 +223,7 @@ textarea {
   max-width: 600px;
 }
 
-.ToDo {
+.todo {
   margin: 0 auto;
   position: relative;
   // min-width после 1441px
@@ -241,6 +245,12 @@ textarea {
   img {
     text-align: center;
   }
+}
+
+
+.todo__input {
+  display: flex;
+  margin-bottom: 15px;
 }
 
 .preloader {

@@ -1,7 +1,4 @@
-import React from "react";
 import { Button } from "react-bootstrap";
-import { todoAPI } from "../api/api";
-import axios from "axios";
 
 export const ToDoItem = (props) => {
   //console.log("props-ToDoItem: ", props);
@@ -23,7 +20,7 @@ export const ToDoItem = (props) => {
           type="checkbox"
           onChange={() => toggleComplete(props.task)}
           checked={props.task.done}
-          disabled={props.isFetching}
+          disabled={props.inputDisabled.some((id) => id === props.task.id)}
           /*  props.completionInProgress.some((id) => {
             return id === props.task.id;
           }) */
@@ -31,7 +28,11 @@ export const ToDoItem = (props) => {
       </span>
       <span className="form-control">{props.task.title}</span>
       {props.task.done ? (
-        <Button variant="danger" disabled={props.isFetching} onClick={() => removeTask(props.task.id)}>
+        <Button
+          variant="danger"
+          disabled={props.inputDisabled.some((id) => id === props.task.id)}
+          onClick={() => removeTask(props.task.id)}
+        >
           X
         </Button>
       ) : null}

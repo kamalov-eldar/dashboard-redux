@@ -19,7 +19,6 @@ export const User = () => {
   const handleChangeInput = useCallback((event) => {
     const value = event.target.value;
     setInputText(value);
-    console.log("handleChangeInput: ");
   }, []);
 
   const handleFormSubmit = (event) => {
@@ -27,12 +26,10 @@ export const User = () => {
     localStorage.setItem("UserName", textInput);
     setShowInput(!showInput);
     setUserName(textInput);
-    console.log("handleFormSubmit", showInput);
   };
 
   const toggleShowInput = () => {
     setShowInput(!showInput);
-    console.log("toggleShowInput: ", showInput);
   };
 
   return (

@@ -7,7 +7,7 @@ const SET_TASKS = "SET_TASKS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
 
-const TOGGLE_IS_COMPLETION_PROGRESS = "TOGGLE_IS_COMPLETION_PROGRESS";
+const PROGRESS_DISABLED_INPUT = "PROGRESS_DISABLED_INPUT";
 
 let initialState = {
   tasks: [
@@ -16,14 +16,13 @@ let initialState = {
     { done: false, id: "48e8dd30-eb01-4eec-91de-aac45de27027", title: "Зададча 3", description: null }, */
   ],
   newTaskText: "",
-  completionInProgress: [],
   isFetching: false,
+  inputDisabled: [], // followingInProgress "72fceda9-53ce-4398-ba51-32961acc431a", "28a3f5ad-1933-4691-864f-7821b2dfd234"
 };
 
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK: {
-      console.log("action-ADD_TASK", action);
       return {
         ...state, // поверхностная копия обьекта
         // tasks: [...state.tasks, { title: action.taskText }],
@@ -31,7 +30,6 @@ const todoReducer = (state = initialState, action) => {
       };
     }
     case DELETE_TASK: {
-      console.log("DELETE_TASK", action);
       return {
         ...state, // поверхностная копия обьекта
         tasks: [...state.tasks.filter((task) => task.id !== action.taskId)],
@@ -47,15 +45,16 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state, // поверхностная копия обьекта
         tasks: [...action.tasks],
+        newTaskText: "",
       };
     }
-    case TOGGLE_IS_COMPLETION_PROGRESS: {
+    case PROGRESS_DISABLED_INPUT: {
       //console.log("state", state);
       return {
         ...state,
-        completionInProgress: action.isFetching
-          ? [...state.completionInProgress, action.taskId]
-          : state.completionInProgress.filter((id) => id !== action.taskId),
+        inputDisabled: action.isFetching
+          ? [...state.inputDisabled, action.taskId]
+          : state.inputDisabled.filter((id) => id !== action.taskId),
       };
     }
     case TOGGLE_IS_FETCHING: {
@@ -86,8 +85,8 @@ export const deleteTaskAC = (taskId) => ({ type: DELETE_TASK, taskId });
 export const updateNewTaskTextAC = (newText) => ({ type: UPDATE_NEW_TASK, newText: newText });
 export const setTasksAC = (tasks) => ({ type: SET_TASKS, tasks });
 export const toggleTaskInCompletedAC = (taskId) => ({ type: TOGGLE_COMPLETED, taskId });
-export const toggleCompletionProgressAC = (isFetching, taskId) => ({
-  type: TOGGLE_IS_COMPLETION_PROGRESS,
+export const toggleProgressDisabledInputAC = (isFetching, taskId) => ({
+  type: PROGRESS_DISABLED_INPUT,
   isFetching,
   taskId,
 });
@@ -102,14 +101,14 @@ export const getTasksThunkCreator = () => (dispatch) => {
 };
 export const putCompletedThunkCreator = (task) => {
   return (dispatch) => {
-    // dispatch(toggleCompletionProgressAC(true, task.id)); // disabled эл-нт пока не пришел ответ от сервера
+    dispatch(toggleProgressDisabledInputAC(true, task.id)); // disabled эл-нт пока не пришел ответ от сервера
     dispatch(toggleIsFetchingAC(true));
     todoAPI.putCompletedAPI(task).then((response) => {
       if (response.data.status === "success") {
         dispatch(toggleTaskInCompletedAC(task.id));
       }
-      //dispatch(toggleCompletionProgressAC(false, task.id));
       dispatch(toggleIsFetchingAC(false));
+      dispatch(toggleProgressDisabledInputAC(false, task.id));
     });
   };
 };
@@ -117,7 +116,6 @@ export const putCompletedThunkCreator = (task) => {
 export const removeTaskThunkCreator = (id) => {
   return (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
-    // props.toggleIsFetching(true);
     todoAPI.removeTaskAPI(id).then((response) => {
       if (response.data.status === "success") {
         dispatch(deleteTaskAC(id));
@@ -130,7 +128,6 @@ export const removeTaskThunkCreator = (id) => {
 export const onAddNewTaskThunkCreator = (newTaskText) => {
   return (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
-    //props.toggleCompletionProgress(true, task.id); // disabled эл-нт пока не пришел ответ от сервера
     todoAPI
       .addTaskAPI(newTaskText)
       .then((response) => {
