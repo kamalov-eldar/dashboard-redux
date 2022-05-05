@@ -9,15 +9,8 @@ let reducers = combineReducers({
   todo: todoReducer, //
 });
 
-<<<<<<< HEAD
 let store = createStore(reducers, compose(applyMiddleware(thunk)));
 //, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-=======
-let store = createStore(
-  reducers,
-  compose(applyMiddleware(thunk)),
-);
->>>>>>> ee2ec249a0ada794310210d6663d90e4cb308df1
 window.store = store;
 
 export default store;
