@@ -5,7 +5,8 @@
 ![image](https://github.com/kamalov-eldar/dashboard-ts/blob/master/src/img/to-do.jpg)
 
 > [!NOTE]
-> Information the user should notice even if skimming.
+
+- :zap: Information the user should notice even if skimming.
 
 ## Функционал
 
