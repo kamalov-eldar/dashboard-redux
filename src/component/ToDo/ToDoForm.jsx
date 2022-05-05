@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap";
 import { ToDoItem } from "./ToDoItem";
-import { Preloader } from "./common/Preloader";
+import { Preloader } from "../Preloader/Preloader";
+import style from "./Style/ToDo.module.css";
+
 export const ToDoForm = (props) => {
   console.log("props-ToDoForm: ", props);
 
@@ -29,9 +31,14 @@ export const ToDoForm = (props) => {
     /*  <form className="mb-3 input-group" onSubmit={handleSubmit}> */
     <>
       {props.isFetching ? <Preloader /> : null}
-      <div className="todo__form">
-        <div className="todo__input">
-          <input className="form-control" value={props.newTaskText} onChange={onTaskChange} onKeyDown={onKeyDown} />
+      <div /* className={style.todo__form} */>
+        <div className={style.todo__form}>
+          <input
+            className={style.todo__input + " " + "form-control"}
+            value={props.newTaskText}
+            onChange={onTaskChange}
+            onKeyDown={onKeyDown}
+          />
           <Button onClick={onAddNewTask} type="submit" variant="danger" disabled={props.isFetching}>
             Добавить
           </Button>

@@ -12,7 +12,7 @@ import {
   putCompletedThunkCreator,
   onAddNewTaskThunkCreator,
   toggleProgressDisabledInputAC,
-} from "../redux/todo-reducer";
+} from "../../redux/todo-reducer";
 import { ToDoForm } from "./ToDoForm";
 
 class ToDoFormContainer extends React.Component {

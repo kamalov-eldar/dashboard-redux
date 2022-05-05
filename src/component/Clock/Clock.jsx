@@ -1,5 +1,5 @@
-import React from "react";
 import { useState, useEffect } from "react";
+import style from "./Style/Clock.module.css";
 
 export const Clock = () => {
   const [time, setTime] = useState(""); //
@@ -10,8 +10,10 @@ export const Clock = () => {
     }, 1000);
   }, []);
   return (
-    <div className="clock container">
-      <h1>{time}</h1>
+    <div className={style.clock} /* "clock */>
+      <div className={style.clock__header} /* "clock__header" */>
+        <h1>{time}</h1>
+      </div>
     </div>
   );
 };

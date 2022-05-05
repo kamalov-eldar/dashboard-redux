@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,AAAC,CACT,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,GAAG,CACT,WAAW,CAAE,MAAM,CACnB,GAAG,CAAE,MAAM,CACX,KAAK,CAAE,KAAK,CACb",
+    "sources": [
+        "Preloader.module.scss"
+    ],
+    "names": [],
+    "file": "Preloader.module.css"
+}

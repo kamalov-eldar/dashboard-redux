@@ -1,6 +1,6 @@
-import React from "react";
-
 import { useState, useEffect } from "react";
+import style from "./Weather/Weather.module.css";
+
 const API_KEY = "55d3da6e8cf6878c7e722243e5972a19";
 
 export const Weather = () => {
@@ -44,17 +44,19 @@ export const Weather = () => {
   }
 
   return (
-    <div className="weather">
-      <div className="weather__container">
-        <span className="weather__icon">
+    <div className={style.weather} /* "weather" */>
+      <div className={style.weather__container} /* "weather__container" */>
+        <span className={style.weather__icon} /* "weather__icon" */>
           <img src={dataWeather.iconSrc} alt="" />
         </span>
-        <span className="weather__temp">{plusTemp() ? dataWeather.temp : "+" + dataWeather.temp}°C</span>
+        <span className={style.weather__temp} /* "weather__temp" */>
+          {plusTemp() ? dataWeather.temp : "+" + dataWeather.temp}°C
+        </span>
       </div>
-      <div className="weather__city-container">
-        <span className="weather__refresh" onClick={clickRefresh}>
+      <div className={style.weather__city_container} /* "weather__city-container" */>
+        <span className={style.weather__refresh} /* "weather__refresh" */ onClick={clickRefresh}>
           <svg
-            className={!addClass ? "refresh__icon" : "refresh__icon_click"}
+            className={!addClass ? style.refresh__icon : style.refresh__icon_click}
             aria-hidden="true"
             focusable="false"
             data-prefix="fas"
@@ -69,7 +71,7 @@ export const Weather = () => {
             ></path>
           </svg>
         </span>
-        <span className="weather__city">{dataWeather.city}</span>
+        <span className={style.weather__city} /* "weather__city" */>{dataWeather.city}</span>
       </div>
     </div>
   );
