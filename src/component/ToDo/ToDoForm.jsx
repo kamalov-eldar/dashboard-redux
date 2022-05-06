@@ -4,7 +4,7 @@ import { Preloader } from "../Preloader/Preloader";
 import style from "./Style/ToDo.module.css";
 
 export const ToDoForm = (props) => {
-  console.log("props-ToDoForm: ", props);
+  //console.log("props-ToDoForm: ", props);
 
   // вызов колбэков которые приходят в пропсах
   const onAddNewTask = () => {
