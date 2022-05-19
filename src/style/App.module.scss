@@ -1,15 +1,14 @@
 html {
   box-sizing: border-box;
+
 }
 
 body {
   width: 100%;
-  height: 100vh;
   background: #ccc;
-  user-select: none; //выделить текст нельзя
+   user-select: none; //выделить текст нельзя
   color: #ffffff;
   min-width: 320px;
-  //margin: 0;
 }
 
 //убирает подсветку во всех браузерах на input, select, button, a
@@ -30,6 +29,7 @@ textarea {
 
 .wrapper {
   height: 100vh;
+  min-height: 100%;
   animation: fadein 0.5s linear;
 }
 
@@ -69,11 +69,6 @@ textarea {
 
 .center__block {
   text-align: center;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-top: 100px;
+  position: relative;
+  height: 200px;
 }

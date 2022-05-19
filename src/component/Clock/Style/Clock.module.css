@@ -1,2 +1,2 @@
-.clock{cursor:default;letter-spacing:-5px;margin:0;height:145px}.clock__header{display:inline;position:absolute;top:0;left:50%;margin-left:-213px}.clock__header h1{margin:0;font-weight:100;font-size:120px}
+.clock{cursor:default;letter-spacing:-5px;margin:0}.clock__header{display:inline;position:absolute;top:0;left:50%;margin-left:-213px}@media (max-width: 768px){.clock__header{margin-left:-136px}}.clock__header h1{margin:0;font-weight:100;font-size:120px}@media (max-width: 768px){.clock__header h1{font-size:80px}}
 /*# sourceMappingURL=Clock.module.css.map */

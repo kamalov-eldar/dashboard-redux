@@ -2,19 +2,28 @@
   cursor: default;
   letter-spacing: -5px;
   margin: 0;
-  height: 145px;
-  //position: relative;
 }
+
 .clock__header {
-  //text-align: left;
   display: inline;
   position: absolute;
   top: 0;
   left: 50%;
   margin-left: -213px;
+
+  // max-width до 768px
+  @media (max-width: 768px) {
+    margin-left: -136px;
+  }
+
   h1 {
     margin: 0;
     font-weight: 100;
     font-size: 120px;
+
+    // max-width до 768px
+    @media (max-width: 768px) {
+      font-size: 80px;
+    }
   }
 }

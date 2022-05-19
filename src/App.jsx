@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import style from './style/App.module.css';
 
 export const App = (props) => {
-  //console.log("props-App: ", props);
   const [dataUrl, setDataUrl] = useState('');
 
   useEffect(() => {
