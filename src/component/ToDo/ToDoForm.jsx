@@ -23,7 +23,7 @@ export const ToDoForm = (props) => {
 
   return (
     <>
-      {props.isFetching ? <Preloader /> : null}
+      {props.isFetching ? <Preloader /> : null }
       <div /* className={style.todo__form} */>
         <div className={style.todo__form}>
           <input

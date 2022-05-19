@@ -2,7 +2,7 @@
   width: 100%;
   margin: 0 auto;
   margin-top: 195px;
-
+  position: relative;
   // min-width после 1441px
   @media (min-width: 1441px) {
     max-width: 800px;
