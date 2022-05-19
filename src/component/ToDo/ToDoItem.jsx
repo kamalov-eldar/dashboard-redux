@@ -22,9 +22,6 @@ export const ToDoItem = (props) => {
           onChange={() => toggleComplete(props.task)}
           checked={props.task.done}
           disabled={props.inputDisabled.some((id) => id === props.task.id)}
-          /*  props.completionInProgress.some((id) => {
-            return id === props.task.id;
-          }) */
         />
       </span>
       <span className={style.todo__text + " " + "form-control"}>{props.task.title}</span>

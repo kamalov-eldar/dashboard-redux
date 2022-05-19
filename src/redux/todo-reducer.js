@@ -11,13 +11,10 @@ const PROGRESS_DISABLED_INPUT = "PROGRESS_DISABLED_INPUT";
 
 let initialState = {
   tasks: [
-    /*  { done: false, id: "8278e35a-d006-42d8-8ab7-27fe8591ce4c", title: "Зададча 1", description: null },
-    { done: false, id: "fc8a623d-bee2-4cdb-b466-951cbd425e6d", title: "Зададча 2", description: null },
-    { done: false, id: "48e8dd30-eb01-4eec-91de-aac45de27027", title: "Зададча 3", description: null }, */
   ],
   newTaskText: "",
   isFetching: false,
-  inputDisabled: [], // followingInProgress "72fceda9-53ce-4398-ba51-32961acc431a", "28a3f5ad-1933-4691-864f-7821b2dfd234"
+  inputDisabled: [],
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -49,7 +46,6 @@ const todoReducer = (state = initialState, action) => {
       };
     }
     case PROGRESS_DISABLED_INPUT: {
-      //console.log("state", state);
       return {
         ...state,
         inputDisabled: action.isFetching
@@ -64,7 +60,6 @@ const todoReducer = (state = initialState, action) => {
       };
     }
     case TOGGLE_COMPLETED: {
-      //console.log("state-TOGGLE_COMPLETED", state);
       return {
         ...state,
         tasks: state.tasks.map((task) => {
@@ -134,9 +129,8 @@ export const onAddNewTaskThunkCreator = (newTaskText) => {
         if (response.data.status === "success") {
         }
       })
-      .then((response) => {
+      .then(() => {
         todoAPI.getTasksAPI().then((tasks) => {
-          // props.setTasks(tasks);
           dispatch(setTasksAC(tasks));
         });
         dispatch(toggleIsFetchingAC(false));

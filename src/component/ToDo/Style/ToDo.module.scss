@@ -1,24 +1,30 @@
 .todo {
   width: 100%;
-  height: 400px;
   margin: 0 auto;
   position: relative;
+  margin-top: 170px;
+
   // min-width после 1441px
   @media (min-width: 1441px) {
     max-width: 800px;
   }
+
   // max-width до 1440px
   @media (max-width: 1440px) {
     max-width: 800px;
   }
+
   // max-width до 320px
   @media (max-width: 320px) {
     min-width: 280px;
     padding: 0;
   }
+
   h1 {
     text-align: center;
+    margin-bottom: 10px;
   }
+
   img {
     text-align: center;
   }
@@ -38,11 +44,10 @@
 }
 
 .input-group_completed {
+
   .input-group-text,
   .form-control {
     opacity: 0.7;
     text-decoration: line-through;
   }
 }
-
-

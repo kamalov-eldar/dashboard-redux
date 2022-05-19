@@ -18,9 +18,6 @@ import { ToDoForm } from "./ToDoForm";
 class ToDoFormContainer extends React.Component {
   componentDidMount() {
     this.props.getTasksThunkCreator();
-    /*  todoAPI.getTasksAPI().then((tasks) => {
-      this.props.setTasks(tasks);
-    }); */
   }
 
   componentDidUpdate() {
@@ -28,16 +25,9 @@ class ToDoFormContainer extends React.Component {
   }
 
   render() {
-    //console.log("props-ToDoFormContainer", this.props);
-    //console.log("render-ToDoFormContainer");
     return (
       <ToDoForm
         {...this.props}
-        // completionInProgress={this.props.completionInProgress}
-        //  addNewTask={props.addNewTask}
-        //updateNewTaskText={props.updateNewTaskText}
-        // tasks={this.props.tasks}
-        //newTaskText={props.newTaskTex}
       />
     );
   }
@@ -45,7 +35,6 @@ class ToDoFormContainer extends React.Component {
 
 //  передаем state в компонент ToDoFormContainer
 let mapStateToProps = (state) => {
-  //console.log("state-ToDoFormContainer: ", state);
   return {
     tasks: state.todo.tasks, // если изм этот обьект тогда перерисуйся
     newTaskText: state.todo.newTaskText,
@@ -55,11 +44,8 @@ let mapStateToProps = (state) => {
 };
 
 // передаем колбэки в компонент ToDoFormContainer
-// dispatch = store.dispatch.bind(store)
 let mapDispatchToProps = (dispatch) => {
-  //console.log("dispatch-mapDispatchToProps: ", dispatch);
   return {
-    /* setTasks: setTasksAC, */
     updateNewTaskText: (newText) => {
       dispatch(updateNewTaskTextAC(newText));
     },

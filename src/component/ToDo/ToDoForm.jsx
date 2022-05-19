@@ -4,8 +4,6 @@ import { Preloader } from "../Preloader/Preloader";
 import style from "./Style/ToDo.module.css";
 
 export const ToDoForm = (props) => {
-  //console.log("props-ToDoForm: ", props);
-
   // вызов колбэков которые приходят в пропсах
   const onAddNewTask = () => {
     props.onAddNewTaskThunkCreator(props.newTaskText);
@@ -23,12 +21,7 @@ export const ToDoForm = (props) => {
     props.updateNewTaskText(text);
   };
 
-  /* const handleSubmit = (e) => {
-    e.preventDefault();
-  }; */
-
   return (
-    /*  <form className="mb-3 input-group" onSubmit={handleSubmit}> */
     <>
       {props.isFetching ? <Preloader /> : null}
       <div /* className={style.todo__form} */>
@@ -49,12 +42,8 @@ export const ToDoForm = (props) => {
             <ToDoItem
               task={task}
               key={task.id}
-              /*   deleteTask={props.deleteTask} */
-              /*    toggleTaskInCompleted={props.toggleTaskInCompleted} */
-              /*       toggleCompletionProgress={props.toggleCompletionProgress} */
               completionInProgress={props.completionInProgress}
               isFetching={props.isFetching}
-              /*  toggleIsFetching={props.toggleIsFetching} */
               putCompletedThunkCreator={props.putCompletedThunkCreator}
               removeTaskThunkCreator={props.removeTaskThunkCreator}
               inputDisabled={props.inputDisabled}
@@ -63,7 +52,5 @@ export const ToDoForm = (props) => {
         })}
       </div>
     </>
-
-    /*   </form> */
   );
 };
