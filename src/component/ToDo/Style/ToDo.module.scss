@@ -1,8 +1,9 @@
 .todo {
   width: 100%;
   margin: 0 auto;
-  margin-top: 195px;
+  // margin-top: 195px;
   position: relative;
+
   // min-width после 1441px
   @media (min-width: 1441px) {
     max-width: 800px;
@@ -22,6 +23,19 @@
   h1 {
     text-align: center;
     margin-bottom: 10px;
+
+    // min-width от 768px
+    @media (min-width: 768px) {
+      margin: 0;
+      padding: 0;
+      font-size: 1.5em;
+    }
+
+    @media (max-width: 320px) {
+      margin: 0;
+      padding: 0;
+      font-size: 1.5em;
+    }
   }
 
   img {
@@ -42,11 +56,19 @@
   cursor: pointer;
 }
 
-.input-group_completed {
+.todo__text {
+  line-height: 1.0;
+}
 
-  .input-group-text,
-  .form-control {
-    opacity: 0.7;
-    text-decoration: line-through;
-  }
+.btn__del {
+  line-height: 1.0;
+}
+
+.input__completed .todo__text {
+  opacity: 0.7;
+  text-decoration: line-through;
+}
+
+.form-control {
+  line-height: 1.0;
 }

@@ -14,8 +14,8 @@ export const ToDoItem = (props) => {
   };
 
   return (
-    <div className={props.task.done ? "input-group input-group_completed" : "input-group"}>
-      <span className={`input-group-text`} /* "input-group-text" */>
+    <div className={props.task.done ? `input-group ${style.input__completed}` : `input-group`}>
+      <span className={`input-group-text`} >
         <input
           className={style.todo__task}
           type="checkbox"
@@ -27,6 +27,7 @@ export const ToDoItem = (props) => {
       <span className={style.todo__text + " " + "form-control"}>{props.task.title}</span>
       {props.task.done ? (
         <Button
+        className={style.btn__del}
           variant="danger"
           disabled={props.inputDisabled.some((id) => id === props.task.id)}
           onClick={() => removeTask(props.task.id)}

@@ -1,6 +1,6 @@
 .weather {
   font-weight: 400;
-  padding: 11px 10px 10px;
+  padding: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-size: 2em;
+  font-size: 1em;
+  line-height: 20px;
 }
 
 .weather__refresh {

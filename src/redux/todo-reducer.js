@@ -6,6 +6,7 @@ const UPDATE_NEW_TASK = "UPDATE-NEW-TASK";
 const SET_TASKS = "SET_TASKS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_COMPLETED = "TOGGLE_COMPLETED";
+const TOGGLE_IS_FETCHINGARR = "TOGGLE_IS_FETCHINGARR";
 
 const PROGRESS_DISABLED_INPUT = "PROGRESS_DISABLED_INPUT";
 
@@ -14,6 +15,7 @@ let initialState = {
   ],
   newTaskText: "",
   isFetching: false,
+  isFetchingArr: [],
   inputDisabled: [],
 };
 
@@ -57,6 +59,12 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: action.isFetching,
+      };
+    }
+    case TOGGLE_IS_FETCHINGARR: {
+      return {
+        ...state,
+        isFetchingArr: [...action.isFetchingArr],
       };
     }
     case TOGGLE_COMPLETED: {
