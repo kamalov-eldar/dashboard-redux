@@ -61,15 +61,10 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 45px;
+  padding-bottom: 15px;
   height: 100%;
   position: relative;
   font-size: 20px;
-
-  // max-width до 1024px
-  @media (max-width: 1024px) {
-    padding-bottom: 15px;
-  }
 }
 
 .center__block {
