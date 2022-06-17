@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  grid-area: weather;
 }
 
 .weather__container {
@@ -30,6 +31,7 @@
   align-items: center;
   font-size: 1em;
   line-height: 20px;
+  margin-top: 5px;
 }
 
 .weather__refresh {
@@ -50,7 +52,7 @@
 .refresh__icon {
   cursor: pointer;
   animation: spin0 1s;
-
+  height: 20px;
   :hover {
     opacity: 0.8;
   }
@@ -90,7 +92,7 @@
   align-items: center;
   justify-content: center;
   text-align: right;
-  height: 45px;
+  height: 50px;
   width: 75px;
   box-sizing: border-box;
   overflow: hidden;

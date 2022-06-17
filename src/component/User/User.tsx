@@ -1,30 +1,28 @@
-import { useState, useEffect, useCallback } from "react";
-import style from "./Style/User.module.css";
-export const User = () => {
-  const [textInput, setInputText] = useState(""); // для передачи данных из инпута  в форму
-  const [userName, setUserName] = useState(""); // для данных из LocalStorage
-  const [showInput, setShowInput] = useState(true); // показывать/скрывать поле ввода
-  //console.log("showInput-compon: ", showInput);
+import { useState, useEffect, useCallback, ChangeEvent, FormEvent } from 'react';
+import style from './Style/User.module.scss';
 
-  // useEffect Аналогично componentDidMount и componentDidUpdate:
+
+export const User = () => {
+  const [textInput, setInputText] = useState<string>(''); // для передачи данных из инпута  в форму
+  const [userName, setUserName] = useState<string>(''); // для данных из LocalStorage
+  const [showInput, setShowInput] = useState<boolean>(true); // показывать/скрывать поле ввода
 
   useEffect(() => {
-    const saved = localStorage.getItem("UserName");
-    setUserName(saved ?? "");
-    //setInputText(saved ?? "");
+    const saved = localStorage.getItem('UserName');
+    setUserName(saved ?? '');
     if (saved && saved.length) {
       setShowInput(false);
     }
   }, []);
 
-  const handleChangeInput = useCallback((event) => {
+  const handleChangeInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setInputText(value);
   }, []);
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    localStorage.setItem("UserName", textInput);
+    localStorage.setItem('UserName', textInput);
     setShowInput(!showInput);
     setUserName(textInput);
   };
@@ -35,11 +33,16 @@ export const User = () => {
 
   return (
     <div className={style.user}>
-      {userName === "" ? (
+      {userName === '' ? (
         <div className={style.user__question_container}>
           <h1 className={style.user__question}>Hello, what's your name?</h1>
           <form className={style.user__form} onSubmit={handleFormSubmit}>
-            <input className={style.user__input} onChange={handleChangeInput} type="text" placeholder="введите имя.." />
+            <input
+              className={style.user__input}
+              onChange={handleChangeInput}
+              type="text"
+              placeholder="введите имя.."
+            />
           </form>
         </div>
       ) : (

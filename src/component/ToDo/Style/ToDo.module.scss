@@ -1,8 +1,8 @@
 .todo {
   width: 100%;
   margin: 0 auto;
-  // margin-top: 195px;
   position: relative;
+  grid-area: todo;
 
   // min-width после 1441px
   @media (min-width: 1441px) {

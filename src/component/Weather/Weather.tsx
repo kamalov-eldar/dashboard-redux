@@ -1,26 +1,35 @@
-import { useState, useEffect } from "react";
-import style from "./Weather/Weather.module.css";
+import { useState, useEffect } from 'react';
+import style from './Style/Weather.module.scss';
 
-const API_KEY = "55d3da6e8cf6878c7e722243e5972a19";
+const API_KEY = '55d3da6e8cf6878c7e722243e5972a19';
+
+type WeatherData = {
+  temp: string;
+  city: string;
+  iconSrc?: string;
+};
 
 export const Weather = () => {
-  const [addClass, setAddClass] = useState(false);
-  const [dataWeather, setDataWeather] = useState({});
+  const [addClass, setAddClass] = useState<Boolean>(false);
+  const [dataWeather, setDataWeather] = useState<WeatherData>({
+    temp: '',
+    city: '',
+  });
 
   useEffect(() => {
     askForCoords();
   }, []);
 
-  function getWeather(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+  function getWeather(position: { coords: { latitude: number; longitude: number } }) {
+    const { latitude, longitude } = position.coords;
+
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang={ru}&units=metric`
     )
       .then((response) => response.json())
       .then((responsejson) => {
-        // console.log("responsejson", responsejson);
-        const iconSrc = `https://openweathermap.org/img/wn/${responsejson.weather[0]["icon"]}@2x.png`;
+        const iconSrc = `https://openweathermap.org/img/wn/${responsejson.weather[0]['icon']}@2x.png`;
+
         setDataWeather({
           temp: responsejson.main.temp,
           city: responsejson.name,
@@ -31,30 +40,30 @@ export const Weather = () => {
 
   // функция запроса координат
   function askForCoords() {
-    const cord = navigator.geolocation.getCurrentPosition(getWeather);
+    navigator.geolocation.getCurrentPosition(getWeather);
   }
 
   function clickRefresh() {
     setAddClass(!addClass);
-    askForCoords();
+      askForCoords();
   }
 
   function plusTemp() {
-    return String(dataWeather.temp).startsWith("-");
+    return String(dataWeather.temp).startsWith('-');
   }
 
   return (
-    <div className={style.weather} /* "weather" */>
-      <div className={style.weather__container} /* "weather__container" */>
-        <span className={style.weather__icon} /* "weather__icon" */>
+    <div className={style.weather}>
+      <div className={style.weather__container}>
+        <span className={style.weather__icon}>
           <img src={dataWeather.iconSrc} alt="" />
         </span>
-        <span className={style.weather__temp} /* "weather__temp" */>
-          {plusTemp() ? dataWeather.temp : "+" + dataWeather.temp}°C
+        <span className={style.weather__temp}>
+          {plusTemp() ? dataWeather.temp : '+' + dataWeather.temp}°C
         </span>
       </div>
-      <div className={style.weather__city_container} /* "weather__city-container" */>
-        <span className={style.weather__refresh} /* "weather__refresh" */ onClick={clickRefresh}>
+      <div className={style.weather__city_container}>
+        <span className={style.weather__refresh} onClick={clickRefresh}>
           <svg
             className={!addClass ? style.refresh__icon : style.refresh__icon_click}
             aria-hidden="true"
@@ -71,7 +80,7 @@ export const Weather = () => {
             ></path>
           </svg>
         </span>
-        <span className={style.weather__city} /* "weather__city" */>{dataWeather.city}</span>
+        <span className={style.weather__city}>{dataWeather.city}</span>
       </div>
     </div>
   );

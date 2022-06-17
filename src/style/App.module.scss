@@ -31,11 +31,14 @@ textarea {
   height: 100vh;
   min-height: 100%;
   animation: fadein 0.5s linear;
+  position:relative;
+  background: black;
 }
 
 .background {
   width: 100%;
   height: 100%;
+  position:absolute;
   background-repeat: no-repeat;
   animation: fadein 0.5s linear;
   background-size: cover;
@@ -44,7 +47,7 @@ textarea {
   justify-content: center;
   align-items: stretch;
   padding: 10px;
-
+  opacity: 0.5;
   // max-width до 768px
   @media (max-width: 425px) {
     align-items: flex-end;
@@ -58,18 +61,26 @@ textarea {
 }
 
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+ font-size: 20px;
   padding-bottom: 15px;
-  height: 100%;
   position: relative;
-  font-size: 20px;
+  height: 100%;
+  display: grid;
+  grid-auto-flow: row dense;
+  grid-template-columns: 1fr;
+  grid-template-rows:150px 1fr 1fr;
+  gap: 20px 0px;
+  grid-template-areas:
+    "weather"
+    "center__block"
+    "todo";
 }
 
 .center__block {
   text-align: center;
   position: relative;
   height: 200px;
+  grid-area: center__block;
 }
 

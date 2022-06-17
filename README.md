@@ -4,9 +4,6 @@
 
 ![image](https://github.com/kamalov-eldar/dashboard-ts/blob/master/src/img/to-do.jpg)
 
-
-## :zap: Скорость изменений в ToDo ограничена скоростью бесплатного сервера!
-
 ## :fire: Разрешите браузеру получать данные о местположении, иначе функционал погоды не будет работать.
 
 ## Функционал
@@ -20,6 +17,7 @@
 - Задачи и все изм. сохраняются на сервер (https://repetitora.net/api/js/tasks?widgetid=987654)
 - Максимальное кол-во возвращаемых задач = 5
 - Используется Redux
+- Используется TypeScript
 
 ### `npm start`
 
@@ -33,4 +31,4 @@
 
 ### `npm run deploy` - сборка приложения и выложить на github.pages
 
-готовый сайт -> https://kamalov-eldar.github.io/dashboard-redux
+демо -> https://kamalov-eldar.github.io/dashboard-redux

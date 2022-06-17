@@ -1,8 +1,12 @@
+.container {
+  position: relative;
+}
+
 .preloader {
   position: absolute;
   left: 50%;
-  margin-left: -100px;
-  top: -20px;
-  width: 200px;
+  margin-left: -25px;
+  top: -80px;
+  width: 50px;
   z-index: 2;
 }
