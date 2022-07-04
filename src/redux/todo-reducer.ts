@@ -10,8 +10,10 @@ let initialState = {
 };
 
 export type initialStateType = typeof initialState
-// Reducer обновляет state в ответ на action
+// Reducer обновляет state 
 const todoReducer = (state = initialState, action:ActionsTypes):initialStateType => {
+  console.log('action: ', action.type);
+
   switch (action.type) {
     case "ADD_TASK": {
       return {

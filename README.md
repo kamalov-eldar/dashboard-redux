@@ -2,7 +2,7 @@
 
 ### Стартовая страница с погодой и списком задач
 
-![image](https://github.com/kamalov-eldar/dashboard-ts/blob/master/src/img/to-do.jpg)
+![image](https://github.com/kamalov-eldar/dashboard-redux/blob/master/src/img/to-do.jpg)
 
 ## :fire: Разрешите браузеру получать данные о местположении, иначе функционал погоды не будет работать.
 

@@ -16,7 +16,6 @@ type PropsType = {
 };
 
 export const ToDoForm: React.FC<PropsType> = (props) => {
-
   return (
     <>
       {props.isFetching ? <Preloader /> : null}
@@ -52,6 +51,7 @@ type PropsInputType = {
 };
 
 const InputToDo: React.FC<PropsInputType> = (props) => {
+  console.log('InputToDo');
   const AddNewTask = (newTaskText: string) => {
     props.onAddNewTask(newTaskText);
   };
