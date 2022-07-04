@@ -1,5 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { TaskType } from '../../../types/types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import style from './Style/ToDo.module.scss';
 
 type PropsType = {
@@ -28,7 +30,7 @@ export const ToDoItem: React.FC<PropsType> = (props) => {
           variant="danger"
           onClick={() => props.removeTask(props.task.id)}
         >
-          X
+          <FontAwesomeIcon icon={faTrashAlt} />
         </Button>
       ) : null}
     </div>

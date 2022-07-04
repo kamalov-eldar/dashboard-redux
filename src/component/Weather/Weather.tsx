@@ -22,9 +22,12 @@ export const Weather = () => {
 
   function getWeather(position: { coords: { latitude: number; longitude: number } }) {
     const { latitude, longitude } = position.coords;
+    console.log('longitude: ', longitude);
+    console.log('latitude: ', latitude);
 
+    // 55.752240, 37.620457
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang={ru}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${55.75224}&lon=${37.620457}&appid=${API_KEY}&lang={ru}&units=metric`
     )
       .then((response) => response.json())
       .then((responsejson) => {
@@ -45,7 +48,7 @@ export const Weather = () => {
 
   function clickRefresh() {
     setAddClass(!addClass);
-      askForCoords();
+    askForCoords();
   }
 
   function plusTemp() {
