@@ -22,6 +22,8 @@ export const Weather = () => {
 
   function getWeather(position: { coords: { latitude: number; longitude: number } }) {
     const { latitude, longitude } = position.coords;
+    console.log('longitude: ', longitude);
+    console.log('latitude: ', latitude);
 
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang={ru}&units=metric`
