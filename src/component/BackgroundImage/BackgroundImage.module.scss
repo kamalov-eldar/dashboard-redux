@@ -1,0 +1,24 @@
+.background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    animation: fadein 0.5s linear;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    padding: 10px;
+    opacity: 0.5;
+    // max-width до 768px
+    @media (max-width: 425px) {
+        align-items: flex-end;
+    }
+
+    // max-width до 320px
+    @media (max-width: 320px) {
+        min-width: 320px;
+        padding: 0;
+    }
+}
